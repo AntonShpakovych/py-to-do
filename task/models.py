@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 
 class Tag(models.Model):
@@ -14,6 +15,9 @@ class Task(models.Model):
     deadline = models.DateTimeField(null=True)
     is_completed = models.BooleanField(default=False)
     tags = models.ManyToManyField(Tag, related_name="tasks")
+
+    class Meta:
+        ordering = ["is_completed", "created_at"]
 
     def __str__(self):
         return self.content[:10] + "..."

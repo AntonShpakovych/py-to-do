@@ -6,3 +6,17 @@
 .container-fluid{
     padding-top: 50px;
 }
+
+.card{
+    margin-bottom: 20px
+}
+
+.add-task{
+    float: right;
+}
+.card-update{
+    float: right;
+}
+.card-update-status{
+    float: right;
+}

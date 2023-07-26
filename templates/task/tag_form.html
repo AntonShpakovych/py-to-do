@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block title %}
+  {{ object|yesno:"Update tag,Add tag" }}
+{% endblock %}
+
+{% block content %}
+  <form action="" method="POST">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <br>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+{% endblock %}
