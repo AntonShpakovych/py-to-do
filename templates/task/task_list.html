@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}
+  TODO list
+{% endblock %}
+
+{% block content %}
+  <div class="title">
+    <a href="{% url 'task:task-create' %}" class="btn btn-primary add-task">Add task</a>
+    <h1>TODO list</h1>
+  </div>
+
+  {% for task in task_list %}
+    <div class="card">
+      <div class="card-header">
+        {% for tag in task.tags.all %}
+          #{{ tag }}
+        {% endfor %}
+      </div>
+      <div class="card-body">
+        <div class="card-update">
+          <a href="{% url 'task:task-update' pk=task.id %}" class="btn btn-primary">Update</a>
+          <a href="{% url 'task:task-delete' pk=task.id %}" class="btn btn-primary">Delete</a>
+        </div>
+        <p class="card-text"><b>Content</b>: {{ task.content }}</p>
+        <p class="card-text"><b>Created at</b>: {{ task.created_at }}</p>
+         {% if task.deadline %}
+          <p class="card-text"><b>Deadline</b>: {{ task.deadline }}</p>
+          <p class="card-text {% if task.is_completed %} task-done {% else %} task-not-done {% endif %}"><b>Status</b>: {{ task.is_completed|yesno:"Done, Not done" }}</p>
+         {% endif %}
+        <a
+            href="{% url "task:task-update-status" pk=task.id %}"
+            class="{% if task.is_completed %}btn btn-secondary{% else %}btn btn-success{% endif %}">
+          {{ task.is_completed|yesno:"Undo, Complete" }}
+        </a>
+      </div>
+    </div>
+  {% endfor %}
+{% endblock %}
