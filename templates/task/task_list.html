@@ -26,6 +26,7 @@
         <p class="card-text"><b>Created at</b>: {{ task.created_at }}</p>
          {% if task.deadline %}
           <p class="card-text"><b>Deadline</b>: {{ task.deadline }}</p>
+          <p class="card-text {% if task.is_completed %} task-done {% else %} task-not-done {% endif %}"><b>Status</b>: {{ task.is_completed|yesno:"Done, Not done" }}</p>
          {% endif %}
         <a
             href="{% url "task:task-update-status" pk=task.id %}"

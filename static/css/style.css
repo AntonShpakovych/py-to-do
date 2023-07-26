@@ -2,15 +2,12 @@
     margin: 0;
     padding: 0;
 }
-
 .container-fluid{
     padding-top: 50px;
 }
-
 .card{
     margin-bottom: 20px
 }
-
 .add-task{
     float: right;
 }
@@ -19,4 +16,10 @@
 }
 .card-update-status{
     float: right;
+}
+.task-done{
+    color: green !important;
+}
+.task-not-done{
+    color: red !important;
 }
