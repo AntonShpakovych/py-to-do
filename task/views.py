@@ -31,11 +31,7 @@ class TaskUpdateView(generic.UpdateView):
 
 def task_update_status(request, pk):
     task = get_object_or_404(Task, pk=pk)
-
-    if task.is_completed:
-        task.is_completed = False
-    else:
-        task.is_completed = True
+    task.is_completed = not task.is_completed
     task.save()
 
     return redirect("task:task-list")
