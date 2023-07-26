@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.conf.urls.static import static
 
 from config import settings
@@ -7,4 +7,5 @@ from config import settings
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("", include("task.urls", namespace="task"))
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
